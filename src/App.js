@@ -67,10 +67,12 @@ const App = () => {
     <>
       <header className="frontHeader">
         <div className="navLinks">
-          <Link to="/" id="home-button">Home</Link>
-          <Link to="/pizza" id="order-pizza">Pizza!</Link>
-        </div>
+          <Link className="homeBtn" to="/" 
+          id="home-button">Home</Link>
+          <Link className="orderBtn" to="/pizza" id="order-pizza">Pizza!</Link>
+        </div>     
         <h1 className="headerH1">Lambda Eats</h1>
+        </header>   
         <Switch>
           <Route exact path="/pizza">
             <Form
@@ -80,7 +82,6 @@ const App = () => {
               errors={formErrors} />
           </Route>
         </Switch>
-      </header>
     </>
   );
 };

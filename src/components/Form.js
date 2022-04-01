@@ -2,7 +2,6 @@ import React from 'react';
 
 const Form = (props) => {
     const { values, change, submit, errors } = props;
-    // const {name, size, pepperoni, bacon, beef, mushroom, special} = props.value;
 
     const onSubmit = (e) => {
         e.preventDefault();
@@ -23,7 +22,6 @@ const Form = (props) => {
                 <label>
                     <p>Name: <span className="error">{errors.name}</span></p>
                     <input
-                        // value={values.name}
                         id="name-input"
                         type="text"
                         name="name"
@@ -37,7 +35,6 @@ const Form = (props) => {
                         </span>
                     </p>
                     <select
-                        // value={values.size}
                         name="size"
                         id="size-dropdown"
                         onChange={onChange}>
@@ -86,7 +83,6 @@ const Form = (props) => {
                 <label>
                     Special Instructions:
                     <input
-                        // value={values.special}
                         id="special-text"
                         type="text"
                         name="special"
