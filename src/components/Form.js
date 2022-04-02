@@ -1,7 +1,9 @@
 import React from 'react';
 
+
 const Form = (props) => {
-    const { values, change, submit, errors } = props;
+    const {change, submit, errors, values } = props;
+    const {pepperoni, bacon, beef, mushroom, special, name, size} = props.values;
 
     const onSubmit = (e) => {
         e.preventDefault();
@@ -9,10 +11,14 @@ const Form = (props) => {
     }
 
     const onChange = evt => {
-        const { name, value, checked, type } = evt.target
-        const valueToUse = type === "checkbox" ? checked : value
-        change(name, valueToUse)
+        const { name, value, type, checked} = evt.target
+        if(type === "checkbox") {
+            change(name, checked)
+        } else {
+        change(name, value)
+        }
     }
+
 
     return (
         <section>
@@ -22,6 +28,7 @@ const Form = (props) => {
                 <label>
                     <p>Name: <span className="error">{errors.name}</span></p>
                     <input
+                        value={name}
                         id="name-input"
                         type="text"
                         name="name"
@@ -35,6 +42,7 @@ const Form = (props) => {
                         </span>
                     </p>
                     <select
+                        value={size}
                         name="size"
                         id="size-dropdown"
                         onChange={onChange}>
@@ -49,33 +57,33 @@ const Form = (props) => {
                     <label>
                         Pepperoni
                         <input
+                            checked={pepperoni}
                             type="checkbox"
                             name="pepperoni"
-                            checked={values.pepperoni}
                             onChange={onChange} />
                     </label>
                     <label>
                         Bacon
                         <input
+                            checked={bacon}
                             type="checkbox"
                             name="bacon"
-                            checked={values.bacon}
                             onChange={onChange} />
                     </label>
                     <label>
                         Mushroom
                         <input
+                            checked={mushroom}
                             type="checkbox"
                             name="mushroom"
-                            checked={values.mushroom}
                             onChange={onChange} />
                     </label>
                     <label>
                         Beef
                         <input
+                            checked={beef}
                             type="checkbox"
                             name="beef"
-                            checked={values.beef}
                             onChange={onChange} />
                     </label>
                 </div>
@@ -83,6 +91,7 @@ const Form = (props) => {
                 <label>
                     Special Instructions:
                     <input
+                        value={special}
                         id="special-text"
                         type="text"
                         name="special"

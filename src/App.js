@@ -4,6 +4,8 @@ import axios from 'axios';
 import Form from './components/Form'
 import schema from './validation/formSchema'
 import * as yup from 'yup';
+import "./App.css"
+
 
 // ENDPOINT: 'https://reqres.in/api/orders'
 const initialForm = {
@@ -14,8 +16,22 @@ const initialForm = {
   //checkboxes
   pepperoni: false,
   bacon: false,
-  mushrooms: false,
-  pineapple: false
+  mushroom: false,
+  pineapple: false,
+  special: ''
+}
+
+const resetForm = {
+  //text input
+  name: '',
+  //dropdown
+  size: '',
+  //checkboxes
+  pepperoni: false,
+  bacon: false,
+  mushroom: false,
+  pineapple: false,
+  special: '',
 }
 
 const initialFormErrors = {
@@ -31,28 +47,6 @@ const App = () => {
   const [form, setForm] = useState(initialForm)
   const [formErrors, setFormErrors] = useState(initialFormErrors)
 
-  const handleSubmit = (newOrder) => {
-    axios.post('https://reqres.in/api/orders', newOrder)
-      .then(res => {
-        console.log(res)
-        setUsers([res.data, ...users])
-      })
-      .catch(err => console.error(err))
-      .finally(() => setForm(initialForm))
-  }
-
-  const validate = (name, value) => {
-    yup.reach(schema, name)
-      .validate(value)
-      .then(() => setFormErrors({ ...formErrors, [name]: "" }))
-      .catch(err => setFormErrors({ ...formErrors, [name]: err.errors[0] }))
-  }
-
-  const handleChange = (name, value) => {
-    validate(name, value);
-    setForm({ ...form, [name]: value });
-  }
-
   const formSubmit = () => {
     const newOrder = {
       name: form.name,
@@ -63,8 +57,32 @@ const App = () => {
     handleSubmit(newOrder);
   }
 
+  const handleSubmit = (newOrder) => {
+    axios.post('https://reqres.in/api/orders', newOrder)
+      .then(res => {
+        console.log(res)
+        setUsers([res.data, ...users])
+        setForm(initialForm)      
+      })
+      .catch(err => console.error(err))
+  }
+
+  const validate = (name, value) => {
+    yup.reach(schema, name)
+      .validate(value)
+      .then(() => setFormErrors({ ...formErrors, [name]: "" }))
+      .catch(err => setFormErrors({ ...formErrors, [name]: err.errors[0] }))
+  }
+
+  const handleChange = (name, value) => {
+    console.log(value)
+    validate(name, value);
+    setForm({ ...form, [name]: value });
+  }
+
   return (
     <>
+    <div className="backgroundImg">
       <header className="frontHeader">
         <div className="navLinks">
           <Link className="homeBtn" to="/" 
@@ -72,7 +90,7 @@ const App = () => {
           <Link className="orderBtn" to="/pizza" id="order-pizza">Pizza!</Link>
         </div>     
         <h1 className="headerH1">Lambda Eats</h1>
-        </header>   
+        </header>
         <Switch>
           <Route exact path="/pizza">
             <Form
@@ -82,6 +100,7 @@ const App = () => {
               errors={formErrors} />
           </Route>
         </Switch>
+        </div>
     </>
   );
 };
