@@ -21,8 +21,8 @@ const Form = (props) => {
 
 
     return (
-        <section>
-            <h2>Order your fresh baked pizza here!</h2>
+        <section className="orderForm">
+            <h2 className="orderFormH2">Order your fresh baked pizza here!</h2>
             <form id="pizza-form" onSubmit={onSubmit}>
                 <div></div>
                 <label>
@@ -36,7 +36,7 @@ const Form = (props) => {
                     </input>
                 </label>
                 <label>
-                    <p>Size
+                    <p>Size:
                         <span className="error">
                             {errors.size}
                         </span>
@@ -95,7 +95,8 @@ const Form = (props) => {
                         id="special-text"
                         type="text"
                         name="special"
-                        onChange={onChange} />
+                        onChange={onChange}
+                        placeholder="Any allergies?" />
                 </label>
                 <button id="order-button" name="orderBtn">Order!</button>
             </form>

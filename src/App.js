@@ -62,7 +62,7 @@ const App = () => {
       .then(res => {
         console.log(res)
         setUsers([res.data, ...users])
-        setForm(initialForm)      
+        setForm(initialForm)
       })
       .catch(err => console.error(err))
   }
@@ -82,15 +82,23 @@ const App = () => {
 
   return (
     <>
-    <div className="backgroundImg">
-      <header className="frontHeader">
-        <div className="navLinks">
-          <Link className="homeBtn" to="/" 
-          id="home-button">Home</Link>
-          <Link className="orderBtn" to="/pizza" id="order-pizza">Pizza!</Link>
-        </div>     
-        <h1 className="headerH1">Lambda Eats</h1>
+      <div className="backgroundImg">
+        <header className="frontHeader">
+          <div className="navLinks">
+            <Link className="homeBtn" to="/"
+              id="home-button">Home</Link>
+            <Link className="orderBtn" to="/pizza" id="order-pizza">Pizza!</Link>
+          </div>
+          <h1 className="headerH1">Lambda Pizza</h1>
         </header>
+        <h2 className="homeH2">Enjoy hot pizza delivered free!</h2>
+        <div className="pizza-pics">
+          <img src="../img/homemadepizza.png" height='200' width='200' />
+          <img src="../img/woodenpizza.png" height='250' width='250' />
+          <img src="../img/dominospizza.png" height='200' width='200' />
+          <img src="../img/pepperonipizza.png" height='200' width='200' />
+        </div>
+        </div>
         <Switch>
           <Route exact path="/pizza">
             <Form
@@ -100,7 +108,6 @@ const App = () => {
               errors={formErrors} />
           </Route>
         </Switch>
-        </div>
     </>
   );
 };
