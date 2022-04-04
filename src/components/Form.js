@@ -2,8 +2,8 @@ import React from 'react';
 
 
 const Form = (props) => {
-    const {change, submit, errors, values } = props;
-    const {pepperoni, bacon, beef, mushroom, special, name, size} = props.values;
+    const { change, submit, errors, values } = props;
+    const { pepperoni, bacon, beef, mushroom, special, name, size } = props.values;
 
     const onSubmit = (e) => {
         e.preventDefault();
@@ -11,11 +11,11 @@ const Form = (props) => {
     }
 
     const onChange = evt => {
-        const { name, value, type, checked} = evt.target
-        if(type === "checkbox") {
+        const { name, value, type, checked } = evt.target
+        if (type === "checkbox") {
             change(name, checked)
         } else {
-        change(name, value)
+            change(name, value)
         }
     }
 
@@ -90,7 +90,7 @@ const Form = (props) => {
 
                 <label>
                     Special Instructions:
-                    <input
+                    <textarea
                         value={special}
                         id="special-text"
                         type="text"
@@ -98,7 +98,7 @@ const Form = (props) => {
                         onChange={onChange}
                         placeholder="Any allergies?" />
                 </label>
-                <button id="order-button" name="orderBtn">Order!</button>
+                <button id="order-button" name="orderBtn" type="submit">Order!</button>
             </form>
         </section>
     )

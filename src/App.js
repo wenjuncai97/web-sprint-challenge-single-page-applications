@@ -6,8 +6,6 @@ import schema from './validation/formSchema'
 import * as yup from 'yup';
 import "./App.css"
 
-
-// ENDPOINT: 'https://reqres.in/api/orders'
 const initialForm = {
   //text input
   name: '',
@@ -18,20 +16,8 @@ const initialForm = {
   bacon: false,
   mushroom: false,
   pineapple: false,
+  //text
   special: ''
-}
-
-const resetForm = {
-  //text input
-  name: '',
-  //dropdown
-  size: '',
-  //checkboxes
-  pepperoni: false,
-  bacon: false,
-  mushroom: false,
-  pineapple: false,
-  special: '',
 }
 
 const initialFormErrors = {
@@ -52,7 +38,7 @@ const App = () => {
       name: form.name,
       size: form.size,
       special: form.special,
-      topping: ["pepperoni", "bacon", "mushroom", "beef"].filter(topping => !!form[topping])
+      topping: ["pepperoni", "bacon", "mushroom", "beef"].filter(topping => form[topping])
     }
     handleSubmit(newOrder);
   }
@@ -60,7 +46,6 @@ const App = () => {
   const handleSubmit = (newOrder) => {
     axios.post('https://reqres.in/api/orders', newOrder)
       .then(res => {
-        console.log(res)
         setUsers([res.data, ...users])
         setForm(initialForm)
       })
@@ -75,7 +60,6 @@ const App = () => {
   }
 
   const handleChange = (name, value) => {
-    console.log(value)
     validate(name, value);
     setForm({ ...form, [name]: value });
   }
@@ -83,14 +67,16 @@ const App = () => {
   return (
     <>
       <div className="backgroundImg">
-        <header className="frontHeader">
-          <div className="navLinks">
-            <Link className="homeBtn" to="/"
-              id="home-button">Home</Link>
-            <Link className="orderBtn" to="/pizza" id="order-pizza">Pizza!</Link>
-          </div>
-          <h1 className="headerH1">Lambda Pizza</h1>
-        </header>
+      </div>
+      <header className="frontHeader">
+        <div className="navLinks">
+          <Link className="homeBtn" to="/"
+            id="home-button">Home</Link>
+          <Link className="orderBtn" to="/pizza" id="order-pizza">Pizza!</Link>
+        </div>
+        <h1 className="headerH1">Lambda Pizza</h1>
+      </header>
+      <Route exact path="/">
         <h2 className="homeH2">Enjoy hot pizza delivered free!</h2>
         <div className="pizza-pics">
           <img src="../img/homemadepizza.png" height='200' width='200' />
@@ -98,16 +84,16 @@ const App = () => {
           <img src="../img/dominospizza.png" height='200' width='200' />
           <img src="../img/pepperonipizza.png" height='200' width='200' />
         </div>
-        </div>
-        <Switch>
-          <Route exact path="/pizza">
-            <Form
-              values={form}
-              change={handleChange}
-              submit={formSubmit}
-              errors={formErrors} />
-          </Route>
-        </Switch>
+      </Route>
+      <Switch>
+        <Route exact path="/pizza">
+          <Form
+            values={form}
+            change={handleChange}
+            submit={formSubmit}
+            errors={formErrors} />
+        </Route>
+      </Switch>
     </>
   );
 };
