@@ -79,10 +79,10 @@ const App = () => {
       <Route exact path="/">
         <h2 className="homeH2">Enjoy hot pizza delivered free!</h2>
         <div className="pizza-pics">
-          <img src="../img/homemadepizza.png" height='200' width='200' />
-          <img src="../img/woodenpizza.png" height='250' width='250' />
-          <img src="../img/dominospizza.png" height='200' width='200' />
-          <img src="../img/pepperonipizza.png" height='200' width='200' />
+          <img src="../img/homemadepizza.png" alt="ovenpizza" height='300' width='300' />
+          <img src="../img/woodenpizza.png" alt="woodenpizza" height='350' width='350' />
+          <img src="../img/dominospizza.png" alt="dominospizza" height='300' width='300' />
+          <img src="../img/pepperonipizza.png" alt="pepperonipizza" height='275' width='275' />
         </div>
       </Route>
       <Switch>

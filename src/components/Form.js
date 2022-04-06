@@ -2,7 +2,7 @@ import React from 'react';
 
 
 const Form = (props) => {
-    const { change, submit, errors, values } = props;
+    const { change, submit, errors } = props;
     const { pepperoni, bacon, beef, mushroom, special, name, size } = props.values;
 
     const onSubmit = (e) => {
