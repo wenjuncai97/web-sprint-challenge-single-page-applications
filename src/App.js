@@ -33,15 +33,6 @@ const App = () => {
   const [form, setForm] = useState(initialForm)
   const [formErrors, setFormErrors] = useState(initialFormErrors)
 
-  const formSubmit = () => {
-    const newOrder = {
-      name: form.name,
-      size: form.size,
-      special: form.special,
-      topping: ["pepperoni", "bacon", "mushroom", "beef"].filter(topping => form[topping])
-    }
-    handleSubmit(newOrder);
-  }
 
   const handleSubmit = (newOrder) => {
     axios.post('https://reqres.in/api/orders', newOrder)
@@ -50,6 +41,16 @@ const App = () => {
         setForm(initialForm)
       })
       .catch(err => console.error(err))
+  }
+
+  const formSubmit = () => {
+    const newOrder = {
+      name: form.name,
+      size: form.size,
+      special: form.special,
+      topping: ["pepperoni", "bacon", "mushroom", "beef"].filter(topping => form[topping])
+    }
+    handleSubmit(newOrder);
   }
 
   const validate = (name, value) => {
@@ -72,7 +73,8 @@ const App = () => {
         <div className="navLinks">
           <Link className="homeBtn" to="/"
             id="home-button">Home</Link>
-          <Link className="orderBtn" to="/pizza" id="order-pizza">Pizza!</Link>
+          <Link className="orderBtn" to="/pizza"
+            id="order-pizza">Pizza!</Link>
         </div>
         <h1 className="headerH1">Lambda Pizza</h1>
       </header>
