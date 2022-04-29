@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { Route, Link, Switch } from 'react-router-dom'
+import React, { useState } from "react";
+import { Route, Link, Switch, useHistory } from 'react-router-dom'
 import axios from 'axios';
 import Form from './components/Form'
 import schema from './validation/formSchema'
@@ -7,7 +7,7 @@ import * as yup from 'yup';
 import "./App.css"
 
 const initialForm = {
-  //text input
+  //text input`npm
   name: '',
   //dropdown
   size: '',
@@ -33,6 +33,7 @@ const App = () => {
   const [form, setForm] = useState(initialForm)
   const [formErrors, setFormErrors] = useState(initialFormErrors)
 
+  const { push } = useHistory();
 
   const handleSubmit = (newOrder) => {
     axios.post('https://reqres.in/api/orders', newOrder)
@@ -65,6 +66,10 @@ const App = () => {
     setForm({ ...form, [name]: value });
   }
 
+  const pizzaFormHandle = () => {
+    push("/pizza");
+  }
+
   return (
     <>
       <div className="backgroundImg">
@@ -87,6 +92,9 @@ const App = () => {
           <img src="../img/pepperonipizza.png" alt="pepperonipizza" height='275' width='275' />
         </div>
       </Route>
+      <div className="order-div" >
+        <button className="order-btn" onClick={pizzaFormHandle}>ORDER HERE!</button>
+      </div>
       <Switch>
         <Route exact path="/pizza">
           <Form

@@ -92,3 +92,13 @@ body {
       font-size: 1.8rem;
       color: white;
   }
+
+  .order-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .order-btn {
+      font-size: 1.5rem;
+  }
