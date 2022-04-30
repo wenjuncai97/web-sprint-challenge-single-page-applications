@@ -91,10 +91,10 @@ const App = () => {
           <img src="../img/dominospizza.png" alt="dominospizza" height='300' width='300' />
           <img src="../img/pepperonipizza.png" alt="pepperonipizza" height='275' width='275' />
         </div>
-      </Route>
-      <div className="order-div" >
+        <div className="order-div" >
         <button className="order-btn" onClick={pizzaFormHandle}>ORDER HERE!</button>
       </div>
+      </Route>
       <Switch>
         <Route exact path="/pizza">
           <Form
