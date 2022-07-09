@@ -39,9 +39,9 @@ const App = () => {
     axios.post('https://reqres.in/api/orders', newOrder)
       .then(res => {
         setUsers([res.data, ...users])
-        setForm(initialForm)
       })
       .catch(err => console.error(err))
+      .finally(() => setForm(initialForm))
   }
 
   const formSubmit = () => {
@@ -92,8 +92,8 @@ const App = () => {
           <img src="../img/pepperonipizza.png" alt="pepperonipizza" height='275' width='275' />
         </div>
         <div className="order-div" >
-        <button className="order-btn" onClick={pizzaFormHandle}>ORDER HERE!</button>
-      </div>
+          <button className="order-btn" onClick={pizzaFormHandle}>ORDER HERE!</button>
+        </div>
       </Route>
       <Switch>
         <Route exact path="/pizza">

@@ -55,36 +55,36 @@ const Form = (props) => {
                 <div className="toppings checkboxes">
                     <h4>Toppings</h4>
                     <label>
-                        Pepperoni
                         <input
                             checked={pepperoni}
                             type="checkbox"
                             name="pepperoni"
                             onChange={onChange} />
+                            Pepperoni
                     </label>
                     <label>
-                        Bacon
                         <input
                             checked={bacon}
                             type="checkbox"
                             name="bacon"
                             onChange={onChange} />
+                            Bacon
                     </label>
                     <label>
-                        Mushroom
                         <input
                             checked={mushroom}
                             type="checkbox"
                             name="mushroom"
                             onChange={onChange} />
+                            Mushroom
                     </label>
                     <label>
-                        Beef
                         <input
                             checked={beef}
                             type="checkbox"
                             name="beef"
                             onChange={onChange} />
+                            Beef
                     </label>
                 </div>
 
